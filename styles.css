@@ -467,9 +467,11 @@ em {
 }
 
 .gabarito {
-  margin-top: 2rem;
-  padding-top: 1.25rem;
-  border-top: 1px solid var(--rule);
+  margin: 0 0 1.5rem;
+  padding: 1.1rem 1.15rem 1.2rem;
+  border: 1px solid color-mix(in srgb, var(--brass) 38%, var(--rule));
+  border-radius: 0.2rem;
+  background: color-mix(in srgb, var(--brass) 7%, var(--panel));
   scroll-margin-top: 1.25rem;
   animation: unfold 520ms var(--ease) both;
 }
@@ -484,6 +486,38 @@ em {
 
 .gabarito p {
   margin: 0 0 0.7rem;
+}
+
+.gabarito p:last-child,
+.gabarito-explain p:last-child {
+  margin-bottom: 0;
+}
+
+.gabarito-result {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+}
+
+.gabarito-result.is-right {
+  color: var(--pass);
+}
+
+.gabarito-result.is-wrong {
+  color: var(--fail);
+}
+
+.gabarito-label {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: var(--mute);
+}
+
+.gabarito-explain {
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--rule);
 }
 
 .flash-scene {

@@ -219,12 +219,7 @@
         </div>`
       : "";
 
-    const gabarito = saved.revealed
-      ? `<section class="gabarito" aria-live="polite" tabindex="-1">
-          <h2>Gabarito</h2>
-          ${formatText(question.gabarito)}
-        </section>`
-      : "";
+    const gabarito = renderGabarito(question, saved);
 
     const notice = state.notice
       ? `<p class="notice" id="notice" role="alert" tabindex="-1">${escapeHtml(state.notice)}</p>`
@@ -240,6 +235,7 @@
           ${options}
           ${draft}
           ${notice}
+          ${gabarito}
           <div class="actions">
             <button type="button" class="btn btn-primary" data-act="check" ${
               saved.revealed ? "disabled" : ""
@@ -249,7 +245,6 @@
               state.index === total - 1 ? "Encerrar" : "Próxima"
             }</button>
           </div>
-          ${gabarito}
         </div>
       </article>`;
   }
@@ -284,6 +279,36 @@
           </div>
         </div>
       </article>`;
+  }
+
+  function renderGabarito(question, saved) {
+    if (!saved.revealed) return "";
+    const blocks = [];
+    const correct = (question.options || []).find((option) => option.key === question.answer);
+    if (question.kind === "mc" || question.kind === "vf") {
+      const hit = saved.selected === question.answer;
+      blocks.push(
+        `<p class="gabarito-result ${hit ? "is-right" : "is-wrong"}">${
+          hit ? "Resposta certa." : "Resposta incorreta."
+        }</p>`
+      );
+      if (correct) {
+        const label =
+          question.kind === "vf" ? correct.text : correct.key + ") " + correct.text;
+        blocks.push(
+          `<p><span class="gabarito-label">Alternativa correta</span> ${formatInline(label)}</p>`
+        );
+      }
+    }
+    const comment = String(question.gabarito || "").trim();
+    const bareKey = /^(v|f|[a-e])$/i.test(comment);
+    if (comment && !bareKey) {
+      blocks.push(`<div class="gabarito-explain">${formatText(comment)}</div>`);
+    }
+    return `<section class="gabarito" aria-live="polite" tabindex="-1">
+          <h2>Gabarito</h2>
+          ${blocks.join("")}
+        </section>`;
   }
 
   function renderSummary() {
@@ -358,7 +383,11 @@
       setAnswer(question.id, { revealed: true });
       render();
       const gabarito = els.main.querySelector(".gabarito");
-      if (gabarito) gabarito.focus?.();
+      if (gabarito) {
+        gabarito.focus();
+        const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        gabarito.scrollIntoView({ block: "nearest", behavior: reduce ? "auto" : "smooth" });
+      }
       return;
     }
     if (act === "flip") {
