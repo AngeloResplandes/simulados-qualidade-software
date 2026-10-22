@@ -1,0 +1,7 @@
+{
+  "name": "simulados-qualidade-software",
+  "private": true,
+  "scripts": {
+    "test": "node --test"
+  }
+}

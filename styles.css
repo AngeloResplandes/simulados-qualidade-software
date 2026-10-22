@@ -520,6 +520,30 @@ em {
   border-top: 1px solid var(--rule);
 }
 
+.gabarito-ai {
+  margin-top: 0.85rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid var(--rule);
+}
+
+.gabarito-ai h3 {
+  margin: 0 0 0.7rem;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--brass);
+}
+
+.gabarito-ai-status {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--mute);
+}
+
+.gabarito-ai-body p:last-child {
+  margin-bottom: 0;
+}
+
 .flash-scene {
   perspective: 1600px;
   margin: 0 0 1.35rem;

@@ -1,6 +1,8 @@
 (function () {
   const STORAGE = "qs-estudo-v1";
+  const EXPLAIN_API = window.EXPLAIN_API_URL || "/api/explain";
   const data = window.SIMULADOS;
+  const pendingExplain = {};
 
   const state = {
     moduleId: "m1",
@@ -305,10 +307,82 @@
     if (comment && !bareKey) {
       blocks.push(`<div class="gabarito-explain">${formatText(comment)}</div>`);
     }
+    blocks.push(renderAi(saved));
     return `<section class="gabarito" aria-live="polite" tabindex="-1">
           <h2>Gabarito</h2>
           ${blocks.join("")}
         </section>`;
+  }
+
+  function answerCacheKey(saved) {
+    return String(saved.selected || "") + "\n" + String(saved.draft || "");
+  }
+
+  function renderAi(saved) {
+    let body;
+    if (saved.aiStatus === "ready" && saved.aiExplanation) {
+      body = `<div class="gabarito-ai-body">${formatText(saved.aiExplanation)}</div>`;
+    } else if (saved.aiStatus === "error") {
+      body =
+        '<p class="gabarito-ai-status">Não foi possível obter a explicação. O gabarito acima continua válido.</p>';
+    } else {
+      body = '<p class="gabarito-ai-status">A pensar…</p>';
+    }
+    return `<div class="gabarito-ai">
+          <h3>Explicação</h3>
+          ${body}
+        </div>`;
+  }
+
+  function ensureExplanation(question) {
+    const saved = getAnswer(question.id);
+    if (!saved.revealed) return;
+    const cacheKey = answerCacheKey(saved);
+    if (saved.aiExplanation && saved.aiKey === cacheKey) {
+      if (saved.aiStatus !== "ready") setAnswer(question.id, { aiStatus: "ready" });
+      return;
+    }
+    if (saved.aiStatus === "error" && saved.aiKey === cacheKey) return;
+    if (pendingExplain[question.id] === cacheKey) return;
+    pendingExplain[question.id] = cacheKey;
+    if (saved.aiStatus !== "loading" || saved.aiKey !== cacheKey) {
+      setAnswer(question.id, { aiStatus: "loading", aiKey: cacheKey });
+    }
+    fetch(EXPLAIN_API, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        questionId: question.id,
+        selected: saved.selected || "",
+        draft: saved.draft || ""
+      })
+    })
+      .then((res) =>
+        res.json().then((data) => ({ ok: res.ok, data })).catch(() => ({ ok: false, data: {} }))
+      )
+      .then(({ ok, data }) => {
+        const latest = getAnswer(question.id);
+        if (latest.aiKey && latest.aiKey !== cacheKey) return;
+        if (!ok || !data.explanation) throw new Error("fail");
+        setAnswer(question.id, { aiStatus: "ready", aiExplanation: String(data.explanation) });
+      })
+      .catch(() => {
+        const latest = getAnswer(question.id);
+        if (latest.aiKey && latest.aiKey !== cacheKey) return;
+        setAnswer(question.id, { aiStatus: "error", aiExplanation: "" });
+      })
+      .finally(() => {
+        if (pendingExplain[question.id] === cacheKey) delete pendingExplain[question.id];
+        const current = items()[state.index];
+        if (!current || current.id !== question.id || state.mode !== "questions" || state.done) return;
+        const box = els.main.querySelector(".gabarito-ai");
+        const latest = getAnswer(question.id);
+        if (box && latest.revealed) {
+          box.outerHTML = renderAi(latest);
+          return;
+        }
+        render();
+      });
   }
 
   function renderSummary() {
@@ -348,6 +422,7 @@
       });
     }
     bindNav(question);
+    ensureExplanation(question);
   }
 
   function bindFlash() {

@@ -1,4 +1,9 @@
-window.SIMULADOS = [
+(function (root, data) {
+  if (typeof module === "object" && module.exports) {
+    module.exports = data;
+  }
+  if (root) root.SIMULADOS = data;
+})(typeof globalThis !== "undefined" ? globalThis : this, [
   {
     id: "m1",
     short: "Fundamentos",
@@ -876,4 +881,4 @@ window.SIMULADOS = [
       }
     ]
   }
-];
+]);
