@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "projectRevision": {
+    "commit": null,
+    "files": {
+      "index.html": "821641fb4f9f9f6963afadeb8bc8ed7addeac821fc0f9c42f14ad4b76552f844",
+      "styles.css": "45eae7ebe52409368282553584f59a4e356ca4fbc63dd141a979920221bf6827",
+      "app.js": "75c4c9062a7b5789f0f9e9093c52787a64b9f20bddeab50a1d45b5f73b3c80af"
+    }
+  },
+  "captures": [
+    {
+      "file": "docs/design/estudo-simulados/desktop-flash-r2.png",
+      "sha256": "01daf2902fd6eedcd6efa26ec328b44249126aaae34112787b044ab8c6fa06ac",
+      "format": "png",
+      "mime": "image/png",
+      "dimensions": { "width": 1440, "height": 900 },
+      "revision": "unavailable-git;index.html:821641fb4f9f9f6963afadeb8bc8ed7addeac821fc0f9c42f14ad4b76552f844;styles.css:45eae7ebe52409368282553584f59a4e356ca4fbc63dd141a979920221bf6827;app.js:75c4c9062a7b5789f0f9e9093c52787a64b9f20bddeab50a1d45b5f73b3c80af",
+      "route": "/",
+      "viewport": { "width": 1440, "height": 900 },
+      "state": "m1-flash-1-verso",
+      "kind": "viewport",
+      "clip": null,
+      "actor": "controller",
+      "tool": "cursor-ide-browser Page.captureScreenshot",
+      "capturedAt": "2026-10-22T12:49:47.242Z",
+      "captureProvenance": "cdp-response-Page.captureScreenshot-2026-10-22T12-49-47-242Z.json",
+      "recordedAt": "2026-10-22T12:51:35.258Z",
+      "notes": "Current revision. Bordered ficha after flip. Prior caderno-1 captures are stale; see evidence-revision-caderno-1.json."
+    },
+    {
+      "file": "docs/design/estudo-simulados/tablet-flash.png",
+      "sha256": "3b77ce3aad10c951777d640abf6dcf866498bdace3b8f213b009c4c1b051ed7f",
+      "format": "png",
+      "mime": "image/png",
+      "dimensions": { "width": 768, "height": 1024 },
+      "revision": "unavailable-git;index.html:821641fb4f9f9f6963afadeb8bc8ed7addeac821fc0f9c42f14ad4b76552f844;styles.css:45eae7ebe52409368282553584f59a4e356ca4fbc63dd141a979920221bf6827;app.js:75c4c9062a7b5789f0f9e9093c52787a64b9f20bddeab50a1d45b5f73b3c80af",
+      "route": "/",
+      "viewport": { "width": 768, "height": 1024 },
+      "state": "m1-flash-1-verso",
+      "kind": "viewport",
+      "clip": null,
+      "actor": "controller",
+      "tool": "cursor-ide-browser Page.captureScreenshot",
+      "capturedAt": "2026-10-22T12:50:16.031Z",
+      "captureProvenance": "cdp-response-Page.captureScreenshot-2026-10-22T12-50-16-031Z.json",
+      "recordedAt": "2026-10-22T12:51:35.395Z",
+      "notes": "Tablet 768×1024. Numeral beside card, no overflow."
+    },
+    {
+      "file": "docs/design/estudo-simulados/mobile-flash-r2.png",
+      "sha256": "f963d456782e69cbba68510dff1ead8bb441ad2697278f1ac344fa40a496dd04",
+      "format": "png",
+      "mime": "image/png",
+      "dimensions": { "width": 390, "height": 844 },
+      "revision": "unavailable-git;index.html:821641fb4f9f9f6963afadeb8bc8ed7addeac821fc0f9c42f14ad4b76552f844;styles.css:45eae7ebe52409368282553584f59a4e356ca4fbc63dd141a979920221bf6827;app.js:75c4c9062a7b5789f0f9e9093c52787a64b9f20bddeab50a1d45b5f73b3c80af",
+      "route": "/",
+      "viewport": { "width": 390, "height": 844 },
+      "state": "m1-flash-1-verso",
+      "kind": "viewport",
+      "clip": null,
+      "actor": "controller",
+      "tool": "cursor-ide-browser Page.captureScreenshot",
+      "capturedAt": "2026-10-22T12:50:38.695Z",
+      "captureProvenance": "cdp-response-Page.captureScreenshot-2026-10-22T12-50-38-695Z.json",
+      "recordedAt": "2026-10-22T12:51:35.458Z",
+      "notes": "Phone 390×844. Stacked numeral, full-width Virar."
+    },
+    {
+      "file": "docs/design/estudo-simulados/mobile-question-r2.png",
+      "sha256": "d217153e8ef84a22e19b175f993cca754701b0dfa52ca29e6dd26ab25a8050d6",
+      "format": "png",
+      "mime": "image/png",
+      "dimensions": { "width": 390, "height": 844 },
+      "revision": "unavailable-git;index.html:821641fb4f9f9f6963afadeb8bc8ed7addeac821fc0f9c42f14ad4b76552f844;styles.css:45eae7ebe52409368282553584f59a4e356ca4fbc63dd141a979920221bf6827;app.js:75c4c9062a7b5789f0f9e9093c52787a64b9f20bddeab50a1d45b5f73b3c80af",
+      "route": "/",
+      "viewport": { "width": 390, "height": 844 },
+      "state": "m1-q1-idle",
+      "kind": "viewport",
+      "clip": null,
+      "actor": "controller",
+      "tool": "cursor-ide-browser Page.captureScreenshot",
+      "capturedAt": "2026-10-22T12:50:58.324Z",
+      "captureProvenance": "cdp-response-Page.captureScreenshot-2026-10-22T12-50-58-324Z.json",
+      "recordedAt": "2026-10-22T12:51:35.520Z",
+      "notes": "Phone questions. Options wrap; lower actions below the fold."
+    }
+  ],
+  "checks": [
+    {
+      "id": "visual",
+      "result": "passed",
+      "reason": "Inspected bordered ficha on 1440, 768 and 390; verso after Virar; mobile questions without horizontal overflow.",
+      "evidence": "docs/design/estudo-simulados/desktop-flash-r2.png"
+    },
+    {
+      "id": "flip",
+      "result": "passed",
+      "reason": "Click Virar toggled is-flipped in the live DOM without rebuilding the card; verso text of flashcard 1 was visible.",
+      "evidence": "docs/design/estudo-simulados/desktop-flash-verso.png"
+    },
+    {
+      "id": "keyboard",
+      "result": "pending",
+      "reason": "Native keyboard still not observed this session.",
+      "evidence": "docs/design/estudo-simulados/review.md"
+    },
+    {
+      "id": "viewport-320",
+      "result": "pending",
+      "reason": "320 CSS px not captured.",
+      "evidence": "docs/design/estudo-simulados/review.md"
+    }
+  ]
+}

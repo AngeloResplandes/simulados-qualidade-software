@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "projectRevision": {
+    "commit": null,
+    "files": {
+      "index.html": "ddd52bca3dc6b161940d6adb5a1da0e4f9b84b334708a2d7fb60edf15a7ce39f",
+      "styles.css": "1d8bb06b55f0a0e0b82055c085e567ec73b5d73f61ad45c7f6f1471a26e88824",
+      "app.js": "4abbced07c316d512e69daaf41b7de23485cfe4695739fb7e8ede3331734e88a",
+      "content.js": "c0ebc653e7af0f3aaa4b3c368a1ed19750613167dc70d71845a3ff49983a662a"
+    }
+  },
+  "captures": [
+    {
+      "file": "docs/design/estudo-simulados/desktop-idle-r2.png",
+      "sha256": "deebdc425abf459a08210c335c4b452167a44136a9135e5ff4b3b823ae66c30b",
+      "format": "png",
+      "mime": "image/png",
+      "dimensions": { "width": 1440, "height": 900 },
+      "revision": "unavailable-git;index.html:ddd52bca3dc6b161940d6adb5a1da0e4f9b84b334708a2d7fb60edf15a7ce39f;styles.css:1d8bb06b55f0a0e0b82055c085e567ec73b5d73f61ad45c7f6f1471a26e88824;app.js:4abbced07c316d512e69daaf41b7de23485cfe4695739fb7e8ede3331734e88a;content.js:c0ebc653e7af0f3aaa4b3c368a1ed19750613167dc70d71845a3ff49983a662a",
+      "route": "/",
+      "viewport": { "width": 1440, "height": 900 },
+      "state": "normas-q1-idle",
+      "kind": "viewport",
+      "clip": null,
+      "actor": "controller",
+      "tool": "cursor-ide-browser Page.captureScreenshot",
+      "capturedAt": "2026-10-22T12:06:18.066Z",
+      "captureProvenance": "cdp-response-Page.captureScreenshot-2026-10-22T12-06-18-066Z.json",
+      "recordedAt": "2026-10-22T12:09:47.971Z",
+      "notes": "Taken before sticky header was removed. At scrollY=0 the mast is visually equivalent to the current unstuck header."
+    },
+    {
+      "file": "docs/design/estudo-simulados/desktop-checked-r3.png",
+      "sha256": "45fd9c504ce4b21493382f83a3eaca702a63b7b3716cf89598531c2a364058ab",
+      "format": "png",
+      "mime": "image/png",
+      "dimensions": { "width": 1440, "height": 900 },
+      "revision": "unavailable-git;index.html:ddd52bca3dc6b161940d6adb5a1da0e4f9b84b334708a2d7fb60edf15a7ce39f;styles.css:1d8bb06b55f0a0e0b82055c085e567ec73b5d73f61ad45c7f6f1471a26e88824;app.js:4abbced07c316d512e69daaf41b7de23485cfe4695739fb7e8ede3331734e88a;content.js:c0ebc653e7af0f3aaa4b3c368a1ed19750613167dc70d71845a3ff49983a662a",
+      "route": "/",
+      "viewport": { "width": 1440, "height": 900 },
+      "state": "normas-q1-checked",
+      "kind": "viewport",
+      "clip": null,
+      "actor": "controller",
+      "tool": "cursor-ide-browser Page.captureScreenshot",
+      "capturedAt": "2026-10-22T12:07:59.016Z",
+      "captureProvenance": "cdp-response-Page.captureScreenshot-2026-10-22T12-07-59-016Z.json",
+      "recordedAt": "2026-10-22T12:09:48.036Z",
+      "notes": "Current revision after sticky removal. Gabarito sits below the fold in this viewport."
+    },
+    {
+      "file": "docs/design/estudo-simulados/desktop-checked-full.png",
+      "sha256": "86eff40f9ee6eb86805a98fa7fcdd8fe65cdd8342bc6341581967d5402b78b60",
+      "format": "png",
+      "mime": "image/png",
+      "dimensions": { "width": 1440, "height": 1137 },
+      "revision": "unavailable-git;index.html:ddd52bca3dc6b161940d6adb5a1da0e4f9b84b334708a2d7fb60edf15a7ce39f;styles.css:1d8bb06b55f0a0e0b82055c085e567ec73b5d73f61ad45c7f6f1471a26e88824;app.js:4abbced07c316d512e69daaf41b7de23485cfe4695739fb7e8ede3331734e88a;content.js:c0ebc653e7af0f3aaa4b3c368a1ed19750613167dc70d71845a3ff49983a662a",
+      "route": "/",
+      "viewport": { "width": 1440, "height": 900 },
+      "state": "normas-q1-checked",
+      "kind": "full-page",
+      "clip": null,
+      "actor": "controller",
+      "tool": "cursor-ide-browser Page.captureScreenshot",
+      "capturedAt": "2026-10-22T12:08:18.752Z",
+      "captureProvenance": "cdp-response-Page.captureScreenshot-2026-10-22T12-08-18-752Z.json",
+      "recordedAt": "2026-10-22T12:09:48.099Z",
+      "notes": "Includes gabarito. Current revision."
+    },
+    {
+      "file": "docs/design/estudo-simulados/mobile-question.png",
+      "sha256": "9197d92cf6c2284a6aac225f9bd62f59f2fdc3f0d4c55aacc65e036c5fd3bdd4",
+      "format": "png",
+      "mime": "image/png",
+      "dimensions": { "width": 390, "height": 844 },
+      "revision": "unavailable-git;index.html:ddd52bca3dc6b161940d6adb5a1da0e4f9b84b334708a2d7fb60edf15a7ce39f;styles.css:1d8bb06b55f0a0e0b82055c085e567ec73b5d73f61ad45c7f6f1471a26e88824;app.js:4abbced07c316d512e69daaf41b7de23485cfe4695739fb7e8ede3331734e88a;content.js:c0ebc653e7af0f3aaa4b3c368a1ed19750613167dc70d71845a3ff49983a662a",
+      "route": "/",
+      "viewport": { "width": 390, "height": 844 },
+      "state": "normas-q1-checked",
+      "kind": "viewport",
+      "clip": null,
+      "actor": "controller",
+      "tool": "cursor-ide-browser Page.captureScreenshot",
+      "capturedAt": "2026-10-22T12:09:03.060Z",
+      "captureProvenance": "cdp-response-Page.captureScreenshot-2026-10-22T12-09-03-060Z.json",
+      "recordedAt": "2026-10-22T12:09:48.156Z",
+      "notes": "Current revision. Lower options clip in the 844 CSS px viewport as expected."
+    },
+    {
+      "file": "docs/design/estudo-simulados/desktop-flash.png",
+      "sha256": "cd8127997c09b5ef7acf5417bbf073c61b69d4f086b24a18884222dc838f9b5c",
+      "format": "png",
+      "mime": "image/png",
+      "dimensions": { "width": 1440, "height": 900 },
+      "revision": "pre-sticky-removal-flash",
+      "route": "/",
+      "viewport": { "width": 1440, "height": 900 },
+      "state": "m1-flash-1-verso",
+      "kind": "viewport",
+      "clip": null,
+      "actor": "controller",
+      "tool": "cursor-ide-browser Page.captureScreenshot",
+      "capturedAt": "2026-10-22T12:03:47.237Z",
+      "captureProvenance": "cdp-response-Page.captureScreenshot-2026-10-22T12-03-47-237Z.json",
+      "recordedAt": "2026-10-22T12:09:48.220Z",
+      "notes": "Captured before sticky removal. Does not validate the later mast change. Flash layout at scrollY=0 was inspected."
+    },
+    {
+      "file": "docs/design/estudo-simulados/mobile-flash.png",
+      "sha256": "a39644412f284ef81334f48d44d8a6cd1abeff53d2146227c93a1ce603c13d9f",
+      "format": "png",
+      "mime": "image/png",
+      "dimensions": { "width": 390, "height": 844 },
+      "revision": "pre-sticky-removal-flash",
+      "route": "/",
+      "viewport": { "width": 390, "height": 844 },
+      "state": "m1-flash-1-verso",
+      "kind": "viewport",
+      "clip": null,
+      "actor": "controller",
+      "tool": "cursor-ide-browser Page.captureScreenshot",
+      "capturedAt": "2026-10-22T12:04:37.647Z",
+      "captureProvenance": "cdp-response-Page.captureScreenshot-2026-10-22T12-04-37-647Z.json",
+      "recordedAt": "2026-10-22T12:09:48.281Z",
+      "notes": "Captured before sticky removal. Mobile flash layout was inspected."
+    }
+  ],
+  "checks": [
+    {
+      "id": "visual",
+      "result": "passed",
+      "reason": "Inspected 1440x900 idle and checked, full-page gabarito, 390x844 question, and flash frente/verso. Two repair rounds applied.",
+      "evidence": "docs/design/estudo-simulados/desktop-checked-full.png"
+    },
+    {
+      "id": "contrast",
+      "result": "passed",
+      "reason": "Computed colors: bone/ink 12.13:1, mute/ink 6.00:1, brass/ink 7.80:1, pass/ink 10.26:1 on solid backgrounds.",
+      "evidence": "docs/design/estudo-simulados/review.md"
+    },
+    {
+      "id": "interaction",
+      "result": "passed",
+      "reason": "Click select + Conferir reveals original gabarito; empty Conferir shows alert; Virar shows verso; module and mode switches work.",
+      "evidence": "docs/design/estudo-simulados/review.md"
+    },
+    {
+      "id": "keyboard",
+      "result": "pending",
+      "reason": "browser_press_key Tab uses DOM events and left focus on BODY. Skip-link click could not reach the off-screen target. Native keyboard not observed.",
+      "evidence": "docs/design/estudo-simulados/review.md"
+    },
+    {
+      "id": "viewport-320",
+      "result": "pending",
+      "reason": "320 CSS px and zoom were not captured in this session.",
+      "evidence": "docs/design/estudo-simulados/review.md"
+    }
+  ]
+}

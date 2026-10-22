@@ -1,0 +1,676 @@
+:root {
+  --ink: #161513;
+  --panel: #1f1d1a;
+  --rule: #2f2c27;
+  --bone: #d8d2c6;
+  --mute: #9a9388;
+  --brass: #c4a574;
+  --pass: #b8c992;
+  --fail: #d49b8c;
+  --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  --font-sans: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --space: 0.25rem;
+  --radius: 0.125rem;
+  --move: 180ms;
+  --enter: 420ms;
+  --flip: 640ms;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --flip-ease: cubic-bezier(0.45, 0.05, 0.2, 1);
+  --gutter: clamp(1rem, 3.2vw, 1.75rem);
+  --measure: min(48rem, calc(100% - 2 * var(--gutter)));
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--ink);
+  color: var(--bone);
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 0.95rem + 0.2vw, 1.0625rem);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+.lamp {
+  position: fixed;
+  inset: -18% -10% auto auto;
+  width: min(52rem, 90vw);
+  height: min(36rem, 70vh);
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in srgb, var(--brass) 18%, transparent),
+    transparent 68%
+  );
+  animation: lamp-drift 22s var(--ease) infinite alternate;
+}
+
+.lamp::after {
+  content: "";
+  position: fixed;
+  right: -12%;
+  bottom: -18%;
+  width: min(28rem, 70vw);
+  height: min(22rem, 50vh);
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in srgb, var(--brass) 8%, transparent),
+    transparent 70%
+  );
+  animation: lamp-drift 28s var(--ease) infinite alternate-reverse;
+}
+
+@keyframes lamp-drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.55;
+  }
+  to {
+    transform: translate3d(-4%, 5%, 0) scale(1.08);
+    opacity: 0.95;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.85rem, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes unfold {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.6rem, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes rule-in {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+::selection {
+  background: color-mix(in srgb, var(--brass) 35%, transparent);
+  color: var(--bone);
+}
+
+.skip {
+  position: absolute;
+  left: max(0.75rem, env(safe-area-inset-left));
+  top: max(0.75rem, env(safe-area-inset-top));
+  z-index: 20;
+  padding: 0.4rem 0.7rem;
+  background: var(--panel);
+  color: var(--bone);
+  text-decoration: none;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  transform: translateY(-220%);
+  transition: transform var(--move) var(--ease);
+}
+
+.skip:focus {
+  transform: none;
+}
+
+.mast,
+#conteudo {
+  position: relative;
+  z-index: 1;
+}
+
+.mast {
+  border-bottom: 1px solid var(--rule);
+  padding: calc(0.95rem + env(safe-area-inset-top)) var(--gutter) 0.85rem;
+}
+
+.mast-row,
+.modules,
+#conteudo {
+  width: var(--measure);
+  margin-inline: auto;
+}
+
+.mast-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem 1.25rem;
+}
+
+.brand {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--mute);
+}
+
+.modes,
+.modules {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 1.05rem;
+}
+
+.modules {
+  margin-top: 0.7rem;
+}
+
+.modes button,
+.modules button {
+  appearance: none;
+  border: 0;
+  background: none;
+  padding: 0.35rem 0 0.2rem;
+  min-height: 2.5rem;
+  color: var(--mute);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+  transition: color var(--move) var(--ease), border-color var(--move) var(--ease);
+}
+
+.modes button[aria-selected="true"],
+.modules button[aria-current="page"] {
+  color: var(--bone);
+  border-bottom-color: var(--brass);
+}
+
+.modes button:hover,
+.modules button:hover {
+  color: var(--bone);
+}
+
+:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 3px;
+}
+
+#conteudo {
+  padding: clamp(1.35rem, 3vw, 2.4rem) var(--gutter) calc(3.5rem + env(safe-area-inset-bottom));
+}
+
+.lede {
+  margin: 0 0 1.6rem;
+  color: var(--mute);
+  font-size: 0.95rem;
+  animation: rise var(--enter) var(--ease) both;
+}
+
+.stage,
+.summary {
+  animation: rise var(--enter) var(--ease) both;
+}
+
+.stage {
+  display: grid;
+  grid-template-columns: minmax(3.4rem, 4.4rem) minmax(0, 1fr);
+  column-gap: clamp(0.85rem, 2vw, 1.4rem);
+  align-items: start;
+}
+
+.stage > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.numeral {
+  margin: 0;
+  font-size: clamp(2.6rem, 6vw, 4.5rem);
+  line-height: 0.9;
+  font-weight: 400;
+  color: var(--brass);
+  letter-spacing: -0.04em;
+}
+
+.kicker {
+  margin: 0 0 0.7rem;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--mute);
+}
+
+.prompt {
+  margin: 0 0 1.5rem;
+}
+
+.prompt p {
+  margin: 0 0 0.85rem;
+}
+
+.prompt p:last-child {
+  margin-bottom: 0;
+}
+
+code {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.9em;
+  color: var(--brass);
+}
+
+em {
+  font-style: italic;
+}
+
+.options {
+  border: 0;
+  margin: 0 0 1.5rem;
+  padding: 0;
+}
+
+.options legend {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.option {
+  display: grid;
+  grid-template-columns: 1.6rem minmax(0, 1fr);
+  gap: 0.65rem;
+  width: 100%;
+  margin: 0;
+  padding: 0.85rem 0.7rem;
+  min-height: 2.75rem;
+  border: 0;
+  border-left: 2px solid transparent;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background var(--move) var(--ease),
+    border-color var(--move) var(--ease),
+    transform var(--move) var(--ease);
+}
+
+.option + .option {
+  border-top: 1px solid var(--rule);
+}
+
+.option p,
+.flash-body p,
+.lede p {
+  margin: 0;
+}
+
+.lede p + p {
+  margin-top: 0.7rem;
+}
+
+.option:hover,
+.option:focus-visible {
+  background: var(--panel);
+}
+
+.option[aria-checked="true"] {
+  border-left-color: var(--brass);
+  background: var(--panel);
+}
+
+.option.is-right {
+  border-left-color: var(--pass);
+}
+
+.option.is-wrong {
+  border-left-color: var(--fail);
+}
+
+.option.is-right .key {
+  color: var(--pass);
+}
+
+.option.is-wrong .key {
+  color: var(--fail);
+}
+
+.option:disabled {
+  cursor: default;
+}
+
+.key {
+  color: var(--mute);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  padding-top: 0.12rem;
+  transition: color var(--move) var(--ease);
+}
+
+.draft {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin: 0 0 1.5rem;
+}
+
+.draft label {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: var(--mute);
+}
+
+.draft textarea {
+  width: 100%;
+  min-height: 8.5rem;
+  resize: vertical;
+  padding: 0.85rem 0.9rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--panel);
+  color: var(--bone);
+  font: inherit;
+  line-height: 1.5;
+  transition: border-color var(--move) var(--ease), box-shadow var(--move) var(--ease);
+}
+
+.draft textarea:focus {
+  border-color: color-mix(in srgb, var(--brass) 55%, var(--rule));
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--brass) 18%, transparent);
+  outline: none;
+}
+
+.draft textarea:disabled {
+  opacity: 0.85;
+}
+
+.notice {
+  margin: 0 0 1rem;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--fail);
+  animation: unfold var(--enter) var(--ease) both;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 0.85rem;
+  align-items: center;
+}
+
+.btn {
+  appearance: none;
+  border: 1px solid var(--rule);
+  background: transparent;
+  color: var(--bone);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  padding: 0.62rem 1rem;
+  min-height: 2.75rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition:
+    border-color var(--move) var(--ease),
+    background var(--move) var(--ease),
+    color var(--move) var(--ease),
+    transform var(--move) var(--ease),
+    box-shadow var(--move) var(--ease);
+}
+
+.btn:hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--brass) 60%, var(--rule));
+  background: color-mix(in srgb, var(--brass) 10%, transparent);
+  transform: translateY(-1px);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  border-color: var(--brass);
+  color: var(--brass);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--brass) 16%, transparent);
+  box-shadow: 0 8px 22px color-mix(in srgb, var(--brass) 14%, transparent);
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.gabarito {
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rule);
+  scroll-margin-top: 1.25rem;
+  animation: unfold 520ms var(--ease) both;
+}
+
+.gabarito h2 {
+  margin: 0 0 0.7rem;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--brass);
+}
+
+.gabarito p {
+  margin: 0 0 0.7rem;
+}
+
+.flash-scene {
+  perspective: 1600px;
+  margin: 0 0 1.35rem;
+  padding: 0.2rem 0.15rem 0.9rem;
+}
+
+.flash-card {
+  display: grid;
+  width: 100%;
+  min-height: clamp(16rem, 42vh, 22rem);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform var(--flip) var(--flip-ease);
+}
+
+.flash-card.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.flash-face {
+  grid-area: 1 / 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: clamp(16rem, 42vh, 22rem);
+  padding: clamp(1.15rem, 3vw, 1.85rem);
+  border: 1px solid color-mix(in srgb, var(--brass) 38%, var(--rule));
+  border-radius: 0.2rem;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--brass) 7%, var(--panel)),
+      var(--panel) 42%
+    );
+  box-shadow:
+    0 1px 0 color-mix(in srgb, var(--brass) 18%, transparent),
+    0 18px 40px rgba(0, 0, 0, 0.32);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: border-color var(--move) var(--ease), box-shadow var(--move) var(--ease);
+}
+
+.flash-card:hover .flash-face,
+.flash-card:focus-visible .flash-face {
+  border-color: color-mix(in srgb, var(--brass) 70%, var(--rule));
+  box-shadow:
+    0 1px 0 color-mix(in srgb, var(--brass) 28%, transparent),
+    0 22px 48px rgba(0, 0, 0, 0.4);
+}
+
+.flash-front {
+  transform: rotateY(0deg);
+}
+
+.flash-back {
+  transform: rotateY(180deg);
+}
+
+.flash-side {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  color: var(--brass);
+}
+
+.flash-body {
+  margin: 0;
+  font-size: clamp(1.15rem, 2.4vw, 1.4rem);
+  line-height: 1.45;
+}
+
+.summary h1 {
+  margin: 0 0 0.85rem;
+  font-size: clamp(1.4rem, 3vw, 1.75rem);
+  font-weight: 400;
+}
+
+.summary p {
+  margin: 0 0 0.6rem;
+  color: var(--mute);
+}
+
+@media (max-width: 767px) {
+  .mast-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .modes button,
+  .modules button {
+    min-height: 2.75rem;
+  }
+
+  .stage {
+    grid-template-columns: 1fr;
+    row-gap: 0.2rem;
+  }
+
+  .actions {
+    width: 100%;
+  }
+
+  .actions .btn {
+    flex: 1 1 calc(50% - 0.65rem);
+  }
+}
+
+@media (max-width: 479px) {
+  .modes,
+  .modules {
+    gap: 0.1rem 0.85rem;
+  }
+
+  .actions .btn {
+    flex: 1 1 100%;
+  }
+
+  .flash-face {
+    min-height: 15rem;
+    padding: 1.1rem 1rem 1.25rem;
+  }
+
+  .flash-card {
+    min-height: 15rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  :root {
+    --measure: min(44rem, calc(100% - 2 * var(--gutter)));
+  }
+
+  .flash-card,
+  .flash-face {
+    min-height: 18.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --measure: min(48rem, calc(100% - 2 * var(--gutter)));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lamp,
+  .lamp::after {
+    animation: none;
+  }
+
+  .stage,
+  .summary,
+  .lede,
+  .gabarito,
+  .notice {
+    animation: none;
+  }
+
+  .flash-card {
+    transition: none;
+  }
+
+  .flash-card.is-flipped {
+    transform: none;
+  }
+
+  .flash-card.is-flipped .flash-front {
+    display: none;
+  }
+
+  .flash-card:not(.is-flipped) .flash-back {
+    display: none;
+  }
+
+  .flash-back {
+    transform: none;
+  }
+
+  .btn:hover:not(:disabled) {
+    transform: none;
+  }
+}
