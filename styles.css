@@ -540,6 +540,10 @@ em {
   color: var(--mute);
 }
 
+.gabarito-ai .btn {
+  margin-top: 0.75rem;
+}
+
 .gabarito-ai-body p:last-child {
   margin-bottom: 0;
 }

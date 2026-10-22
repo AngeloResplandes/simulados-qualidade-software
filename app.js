@@ -315,7 +315,7 @@
   }
 
   function answerCacheKey(saved) {
-    return String(saved.selected || "") + "\n" + String(saved.draft || "");
+    return "v2\n" + String(saved.selected || "") + "\n" + String(saved.draft || "");
   }
 
   function renderAi(saved) {
@@ -324,7 +324,8 @@
       body = `<div class="gabarito-ai-body">${formatText(saved.aiExplanation)}</div>`;
     } else if (saved.aiStatus === "error") {
       body =
-        '<p class="gabarito-ai-status">Não foi possível obter a explicação. O gabarito acima continua válido.</p>';
+        '<p class="gabarito-ai-status">Não foi possível obter a explicação. O gabarito acima continua válido.</p>' +
+        '<button type="button" class="btn" data-act="retry-ai">Tentar de novo</button>';
     } else {
       body = '<p class="gabarito-ai-status">A pensar…</p>';
     }
@@ -338,8 +339,7 @@
     const saved = getAnswer(question.id);
     if (!saved.revealed) return;
     const cacheKey = answerCacheKey(saved);
-    if (saved.aiExplanation && saved.aiKey === cacheKey) {
-      if (saved.aiStatus !== "ready") setAnswer(question.id, { aiStatus: "ready" });
+    if (saved.aiExplanation && saved.aiKey === cacheKey && saved.aiStatus === "ready") {
       return;
     }
     if (saved.aiStatus === "error" && saved.aiKey === cacheKey) return;
@@ -379,6 +379,7 @@
         const latest = getAnswer(question.id);
         if (box && latest.revealed) {
           box.outerHTML = renderAi(latest);
+          bindAi(question);
           return;
         }
         render();
@@ -425,6 +426,12 @@
     ensureExplanation(question);
   }
 
+  function bindAi(question) {
+    const retry = els.main.querySelector("[data-act=\"retry-ai\"]");
+    if (!retry) return;
+    retry.addEventListener("click", () => handleAct("retry-ai", question));
+  }
+
   function bindFlash() {
     els.main.querySelectorAll("[data-act]").forEach((button) => {
       button.addEventListener("click", () => handleAct(button.dataset.act));
@@ -445,6 +452,18 @@
 
   function handleAct(act, question) {
     const list = items();
+    if (act === "retry-ai" && question) {
+      delete pendingExplain[question.id];
+      setAnswer(question.id, { aiStatus: "loading", aiExplanation: "", aiKey: "" });
+      const box = els.main.querySelector(".gabarito-ai");
+      if (box) {
+        box.outerHTML = renderAi(getAnswer(question.id));
+      } else {
+        render();
+      }
+      ensureExplanation(question);
+      return;
+    }
     if (act === "check" && question) {
       const saved = getAnswer(question.id);
       if ((question.kind === "mc" || question.kind === "vf") && !saved.selected) {

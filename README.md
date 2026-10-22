@@ -18,6 +18,14 @@ Ao clicar em **Conferir**, o gabarito oficial aparece na hora. Em paralelo, `POS
 
 Não coloque a chave em `app.js`, `index.html` nem no Git.
 
+### Teste local com `.env`
+
+1. Copie `.env.example` para `.env` e preencha `OPENAI_API_KEY`.
+2. Rode `npm run dev`.
+3. Abra `http://127.0.0.1:3000/`, responda uma questão e clique em **Conferir**.
+
+O arquivo `.env` não vai para o Git.
+
 ### Testes
 
 ```bash

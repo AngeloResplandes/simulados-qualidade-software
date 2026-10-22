@@ -25,6 +25,7 @@ test("SYSTEM_PROMPT asks for short Portuguese tutoring grounded in the gabarito"
   assert.match(SYSTEM_PROMPT, /2.{0,6}4 frases/i);
   assert.match(SYSTEM_PROMPT, /gabarito/i);
   assert.match(SYSTEM_PROMPT, /n[aã]o invente/i);
+  assert.match(SYSTEM_PROMPT, /s[oó] a letra/i);
 });
 
 test("buildMessages for a wrong objective answer includes prompt, options, official key and student pick", () => {
@@ -41,6 +42,7 @@ test("buildMessages for a wrong objective answer includes prompt, options, offic
   assert.match(user, /b\) Baixa, pois qualidade depende/);
   assert.match(user, /Gabarito oficial: b/);
   assert.match(user, /Resposta do estudante: alternativa a/);
+  assert.match(user, /gabarito oficial é só a chave/i);
 });
 
 test("buildMessages for a correct objective answer still states the official key", () => {
@@ -71,6 +73,7 @@ test("buildMessages for discursive with text comments on the draft", () => {
   assert.match(user, /Texto do gabarito: Erro = engano humano/);
   assert.match(user, /Resposta do estudante: Erro é o if errado\./);
   assert.doesNotMatch(user, /alternativa /);
+  assert.doesNotMatch(user, /gabarito oficial é só a chave/i);
 });
 
 test("buildMessages for empty discursive draft says there was no written answer", () => {

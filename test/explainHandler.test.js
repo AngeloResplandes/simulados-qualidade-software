@@ -141,12 +141,59 @@ test("builds the OpenAI prompt from official content, ignoring client gabarito",
   const payload = JSON.parse(calls[0].init.body);
   assert.equal(payload.model, "gpt-4o-mini");
   assert.equal(payload.temperature, 0.3);
-  assert.equal(payload.max_tokens, 220);
+  assert.equal(payload.max_tokens, 320);
+  assert.equal(payload.max_completion_tokens, undefined);
   assert.equal(payload.messages[0].content, SYSTEM_PROMPT);
   assert.match(payload.messages[1].content, /Gabarito oficial: b/);
   assert.doesNotMatch(payload.messages[1].content, /inventado/);
   assert.doesNotMatch(payload.messages[1].content, /\bhack\b/);
   assert.equal(calls[0].init.headers.Authorization, "Bearer sk-test");
+});
+
+test("uses max_completion_tokens and default temperature for gpt-6-luna", async () => {
+  const { handle, calls } = handlerWith({ getModel: () => "gpt-6-luna" });
+  const res = mockRes();
+  await handle(mockReq(), res);
+  assert.equal(res.statusCode, 200);
+  const payload = JSON.parse(calls[0].init.body);
+  assert.equal(payload.model, "gpt-6-luna");
+  assert.equal(payload.max_completion_tokens, 320);
+  assert.equal(payload.max_tokens, undefined);
+  assert.equal(payload.temperature, undefined);
+});
+
+test("retries with max_completion_tokens when the model rejects max_tokens", async () => {
+  let calls = 0;
+  const { handle } = handlerWith({
+    getModel: () => "mystery-model",
+    fetchImpl: async (url, init) => {
+      calls += 1;
+      const payload = JSON.parse(init.body);
+      if (payload.max_tokens) {
+        return {
+          ok: false,
+          status: 400,
+          json: async () => ({
+            error: {
+              message: "Unsupported parameter: 'max_tokens' is not supported with this model. Use 'max_completion_tokens' instead."
+            }
+          })
+        };
+      }
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({
+          choices: [{ message: { content: "Explicação após ajuste do parâmetro." } }]
+        })
+      };
+    }
+  });
+  const res = mockRes();
+  await handle(mockReq(), res);
+  assert.equal(calls, 2);
+  assert.equal(res.statusCode, 200);
+  assert.match(res.body.explanation, /ajuste do parâmetro/);
 });
 
 test("returns 502 when OpenAI fails", async () => {
